@@ -4,7 +4,7 @@ In this project I will try using Adaptive Fractal Analysis as a method for prior
 
 ## Weekly Reports
 
-You can see weekly report [here](/documentaion)
+You can see weekly report [here](https://github.com/AhtiAhde/AnnotoolAFA/tree/main/documentation)
 
 ## Getting Started
 
