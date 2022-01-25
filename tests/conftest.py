@@ -8,7 +8,6 @@ from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
-print("Hello", BASEDIR)
 load_dotenv(os.path.join(BASEDIR, '.env'))
 
 app = Flask(__name__)

@@ -1,6 +1,8 @@
 import os
 import re
 
+from book_analytics import BookAnalytics
+
 class BookImporter():
     def __init__(self, db, master_mode=False, book_path="static/books"):
         self.db = db
@@ -87,7 +89,8 @@ class BookImporter():
         if import_file not in self.file_list:
             return -1
         
-        paragraphs, title = self._parse_book_content(import_file)
+        book_analytics = BookAnalytics(import_file, self.book_path)
+        paragraphs, title = book_analytics.parse()
         
         sql = "INSERT INTO annotool.books (title, origin) VALUES (:title, :origin) RETURNING id"
         book_res_id = self.db.session.execute(sql, {"title":title, "origin":import_file}).fetchone()[0]
