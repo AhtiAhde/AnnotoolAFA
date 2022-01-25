@@ -2,15 +2,16 @@ import os
 import re
 
 class BookImporter():
-    def __init__(self, db, master_mode=False):
+    def __init__(self, db, master_mode=False, book_path="static/books"):
         self.db = db
+        self.book_path = book_path
         
         self.file_list = []
         self.already_imported = []
         self.import_files = []
         self.import_list = []
         if master_mode:
-            self.file_list = os.listdir("static/books")
+            self.file_list = os.listdir(self.book_path)
 
     ### General Helpers ###
     
@@ -18,7 +19,7 @@ class BookImporter():
         paragraphs = []
         title = ""
         book_started = False
-        with open("static/books/" + import_file, "r") as book_text:
+        with open(self.book_path + "/" + import_file, "r") as book_text:
             buffer = ""
             i = 0
             for line in book_text:
@@ -27,6 +28,7 @@ class BookImporter():
                     buffer += line
                     # We assume that only paragraphs longer than 15 are meaningful
                     if len(line) == 1:
+                        buffer = re.compile(r"\s+").sub(" ", buffer).strip()
                         paragraphs.append(buffer)
                         buffer = ""
                 # These ought to be strategy a pattern, that will handle
@@ -40,7 +42,7 @@ class BookImporter():
                     if "START OF THE PROJECT GUTENBERG EBOOK" in line:
                         book_started = True
         
-        return paragraphs, title
+        return paragraphs, re.compile(r"\s+").sub(" ", title).strip()
 
     ### Admin view, list importable books ###
 
@@ -95,11 +97,10 @@ class BookImporter():
         for i in range(len(paragraphs)):
             # Replace line breaks and other whitespace characters,
             # for some reason SQLAlchemy doesn't escape properly with multirow inserts
-            paragraph = re.compile(r"\s+").sub(" ", paragraphs[i]).strip()
             values.append({
                 "book_id": book_res_id, 
                 "seq_num": i, 
-                "content": paragraph
+                "content": paragraphs[i]
             })
         print(values)
         sql = "INSERT INTO annotool.paragraphs (book_id, seq_num, content) VALUES(:book_id, :seq_num, :content)"
