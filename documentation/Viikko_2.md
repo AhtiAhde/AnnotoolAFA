@@ -11,3 +11,46 @@ Ilmeisesti paras tapa kuintekin olisi kirjoittaa homma (se toinen softa johon t�
 Koitan keskittää projektin oleellisen koodin Book_Analytics luokkaan ja testailen sitten sitä testeillä. Teksti korpuksien dataa ja ominaisuuksia tutkiskelen notebookeissa, joista sitten siirrän toimivat ideat Book_Analytics luokkaan.
 
 Aloittelen tässä sen tutkimuspaperin soveltamista The Great Gatsby kirjaan. Kokeilen ensin, että 1) pystyykö sentimentti sanasto poimimaan merkittäviä kohtia teoksesta ollenkaan, 2) onko laadullisesti eroa ovatko ikkunat täysin samanmittaisia, vai toimiiko myös kappalejako perustainen analyysi jotenkin normalisoituna, 3) saanko menetelmän osumaan annotoituihin testi kappaleisiin tai ylipäätään indikoiko menetelmä hyviä annotoitavia kappaleita millään sanastolla.
+
+## Paperin toteutusta
+
+### Non-linear Adaptive Filtering
+
+Aineiston jakaminen ikkunoihin on helppoa ja tehty. Seuraavaksi pitäisi ymmärtää paperin kohta 2.1. syvällisemmin.
+
+#### Kernel Adaptive Filetring
+
+#### Adaptive Filtering
+
+#### Transfer function in discrete time system
+
+#### Decscribing Function
+
+Wiki: Describing function; Nonlinear control
+
+https://en.wikipedia.org/wiki/Describing_function
+
+Wiki: "It is based on quasi-linearization, which is the approximation of the non-linear system under investigation by a linear time-invariant (LTI) transfer function that depends on the amplitude of the input waveform"
+
+Diskreetissä systeemissä siis ne ikkunat luovat amplitude of the input wave form, perustuen codewordsien esiintyvyyteen / windowin sanojen määrä.
+
+Wiki: "By definition, a transfer function of a true LTI system cannot depend on the amplitude of the input function because an LTI system is linear. Thus, this dependence on amplitude generates a family of linear systems that are combined in an attempt to capture salient features of the non-linear system behavior."
+
+Eli periaateessa kai tässä "describing function" on se Non-linear Adaptive Filteringin ja Adaptive Fractal Analysisin yhdistelmä?
+
+Deadband input: tilanne jossa windowissa on nolla codewordia.
+
+Wiki: "As the linear system's output amplitude decays, the nonlinearity may move into a different continuous region. This switching from one continuous region to another can generate periodic oscillations. The describing function method attempts to predict characteristics of those oscillations (e.g., their fundamental frequency) by assuming that the slow system acts like a low-pass or bandpass filter that concentrates all energy around a single frequency. Even if the output waveform has several modes, the method can still provide intuition about properties like frequency and possibly amplitude; in this case, the describing function method can be thought of as describing the sliding mode of the feedback system."
+
+Tämä vaikuttaa hyvinkin paperin lopputulokselta, jossa on amplitudia normalisoimalla päästy todentamaan dramaattisten eventtien vaihtelua; frequency on ehkä liian säännöllinen sana kuvaamaan mitä tapahtuu, mutta melko säännöllisesti toistuvia state transitioita ainakin on havaittavissa ja vieläpä selvästi.
+
+#### Transfer funktioita ei ole olemassa useille epälineaarisille yhtälöille
+
+Super positio propertyä ei ole olemassa epälineaarisille systeemeile. Additive state decomposition voidaan määritellä epälineaarisille systeemeille (tämä yhtälö näyttää hieman samalta kuin non-linear adaptive filteringin yhtälö); lineaarisissa systeemeissä inputit ja outputit ikään kuin summautuvat, epälineaarisissa eivät. Epälineaarisia systeemejä voidaan kuitenkin yrittää kuvata, esimerkiksi ottamalla globaali keskiarvo syötteeksi, jonka avulla voidaan laskea transfer funktio. Fraktaaleissa menetelmissä ei ehkä oteta globaalia keskiarvoa, vaan jokin liukuvakeskiarvo, jonka jälkeen liukuvan keskiarvon alueella oleville ikkunoille voidaan laskea transfer functionin arvo.
+
+#### Non-linear systems
+
+Wikipediasta:
+"Typically, the behavior of a nonlinear system is described in mathematics by a nonlinear system of equations, which is a set of simultaneous equations in which the unknowns (or the unknown functions in the case of differential equations) appear as variables of a polynomial of degree higher than one or in the argument of a function which is not a polynomial of degree one. In other words, in a nonlinear system of equations, the equation(s) to be solved cannot be written as a linear combination of the unknown variables or functions that appear in them. Systems can be defined as nonlinear, regardless of whether known linear functions appear in the equations. In particular, a differential equation is linear if it is linear in terms of the unknown function and its derivatives, even if nonlinear in terms of the other variables appearing in it."
+
+Tämä näyttäisi liittyvän paperin kohtaan "Then, for each segment, we fit a polynomial of order D. Note that D=0 means a piece-wise constant, and D=1 a linear fit."
