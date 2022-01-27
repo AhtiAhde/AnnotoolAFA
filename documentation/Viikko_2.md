@@ -20,6 +20,11 @@ Aineiston jakaminen ikkunoihin on helppoa ja tehty. Seuraavaksi pitäisi ymmärt
 
 #### Kernel Adaptive Filetring
 
+Tämä paperi kuvailee Kernel Adaptive Filtering menetelmän
+https://hal.archives-ouvertes.fr/hal-01965566/file/15.sp.dictionary_draft.pdf
+
+Voisi siis päätellä, että tämän projektin kannalta oleellisessa paperissa non-linear adaptive filtering on toteutettu siten, että on pidetty vakio dictionarya (Shujezt sentiment dictionary), mutta tuotettu amplitudi on regularisoitu ympäröivien ikkunoiden mukaan.
+
 #### Adaptive Filtering
 
 #### Transfer function in discrete time system
