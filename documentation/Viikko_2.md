@@ -59,3 +59,11 @@ Wikipediasta:
 "Typically, the behavior of a nonlinear system is described in mathematics by a nonlinear system of equations, which is a set of simultaneous equations in which the unknowns (or the unknown functions in the case of differential equations) appear as variables of a polynomial of degree higher than one or in the argument of a function which is not a polynomial of degree one. In other words, in a nonlinear system of equations, the equation(s) to be solved cannot be written as a linear combination of the unknown variables or functions that appear in them. Systems can be defined as nonlinear, regardless of whether known linear functions appear in the equations. In particular, a differential equation is linear if it is linear in terms of the unknown function and its derivatives, even if nonlinear in terms of the other variables appearing in it."
 
 Tämä näyttäisi liittyvän paperin kohtaan "Then, for each segment, we fit a polynomial of order D. Note that D=0 means a piece-wise constant, and D=1 a linear fit."
+
+### Using Syuzhet dictionary
+
+It is not directly available for Python; maybe just try first with NLTK; eventually I will need effective sentiment extractor with custom dictionaries; Syuhzet has four dictionaries: https://medium.com/@datamonsters/sentiment-analysis-tools-overview-part-2-7f3a75c262a3
+
+Here are the dictionaries: https://github.com/mjockers/syuzhet
+
+At first we will be using NTLK sentiment.
