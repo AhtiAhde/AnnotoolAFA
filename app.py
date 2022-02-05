@@ -23,6 +23,18 @@ master_mode = False
 if getenv("MASTER_MODE") == "enabled":
     master_mode = True
 
+@app.route("/")
+def index():
+    # User should get anonymous but persistent token
+    # notice that session['user_id] is a reserved word in Flask
+    if not "user_hash" in session:
+        sql = "INSERT INTO annotool.users (id) VALUES (:id) RETURNING id"
+        result = db.session.execute(sql, {"id":uuid.uuid4()})
+        db.session.commit()
+        session["user_hash"] = result.fetchone()[0]
+    
+    return render_template("index.html", message="index", user=session["user_hash"])
+
 @app.route("/admin/login", methods=["POST"])
 def admin_login():
     user = request.form["user"]
