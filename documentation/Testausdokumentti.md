@@ -50,10 +50,10 @@ Toisaalta taas kappalejako 394 käynnistää MICE quotientin Inquiry draaman kaa
 
 Lisäsin sentimentti intervallin, joka on hieman samantapainen suure kuin tutkimuspaperissa käytetty menetelmä, mutta paljon yksinkertaisempi ja yhtäkkiä tulokset alkoivatkin näyttämään lupaavilta.
 
-Tylsällä kohdalla on korkea intervalli summa, eli ambivalenssia on ilmeisesti paljon:
+Tylsällä kohdalla (184) on korkea intervalli summa, eli ambivalenssia on ilmeisesti paljon:
 
 ![Boring with More data](Boring_second.png?raw=true "Boring with More Data")
 
-Ja mielenkiintoisella on matala intervalli summa, eli sentimentti on selkeästi keskittynyt:
+Ja mielenkiintoisella kohdalla (394) on matala intervalli summa, eli sentimentti on selkeästi keskittynyt:
 
 ![MICE with More data](MICE_ex_1_second.png?raw=true "MICE with More Data")
