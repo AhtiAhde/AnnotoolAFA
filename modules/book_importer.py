@@ -1,7 +1,7 @@
 import os
 import re
 
-from book_analytics import BookAnalytics
+from modules.book_analytics import BookAnalytics
 
 class BookImporter():
     def __init__(self, db, master_mode=False, book_path="static/books"):
