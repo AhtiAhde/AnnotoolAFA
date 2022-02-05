@@ -7,6 +7,6 @@ def test_parse_book_content():
     paragraphs, title = ba.parse()
     for paragraph in paragraphs:
         print([paragraph])
-    assert len(paragraphs) == 3
+    assert len(paragraphs) == 7
     assert title == "The Great Gatsby"
-    assert paragraphs[2]['sentiment']['pos'] == 0.069
+    assert paragraphs[2]['sentiment']['pos'] == 0.112
