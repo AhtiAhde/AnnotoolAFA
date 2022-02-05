@@ -41,3 +41,7 @@ jupyter notebook
 Esimerkiksi tässä on yksi sentimentti analyysi, jolle pitäisi saada kuvaaja, jonka mukaan kappalejako 184 on draamallisesti tylsää sisältöä (tällä hetkellä algoritmi ei siis vielä toimi oikein):
 
 ![Compound](Compound.png?raw=true "Compound")
+
+Toisaalta taas kappalejako 394 käynnistää MICE quotientin Inquiry draaman kaaren (tällä hetkellä sekään ei ihmeemmin näy kuvaajassa merkityksellisesti):
+
+![MICE 1](MICE_ex_1.png?raw=true "Mice 1")
