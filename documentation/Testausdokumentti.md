@@ -45,3 +45,15 @@ Esimerkiksi tässä on yksi sentimentti analyysi, jolle pitäisi saada kuvaaja, 
 Toisaalta taas kappalejako 394 käynnistää MICE quotientin Inquiry draaman kaaren (tällä hetkellä sekään ei ihmeemmin näy kuvaajassa merkityksellisesti):
 
 ![MICE 1](MICE_ex_1.png?raw=true "Mice 1")
+
+### Ensimmäiset lupaukset
+
+Lisäsin sentimentti intervallin, joka on hieman samantapainen suure kuin tutkimuspaperissa käytetty menetelmä, mutta paljon yksinkertaisempi ja yhtäkkiä tulokset alkoivatkin näyttämään lupaavilta.
+
+Tylsällä kohdalla on korkea intervalli summa, eli ambivalenssia on ilmeisesti paljon:
+
+![Boring with More data](Boring_second.png?raw=true "Boring with More Data")
+
+Ja mielenkiintoisella on matala intervalli summa, eli sentimentti on selkeästi keskittynyt:
+
+![MICE with More data](MICE_ex_1_second.png?raw=true "MICE with More Data")
