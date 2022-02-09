@@ -41,12 +41,11 @@ class BookAnalytics():
             "punkt",
         ])
 
-    def parse(self):
+    def parse_windows(self):
         """
         Parse method.
 
-        Parses the book to paragraphs with necessary metadata arranged as
-        prioritized list (still TODO).
+        Parses the book to paragraph windows with necessary metadata
         """
         windows = []
         title = ""
@@ -86,3 +85,91 @@ class BookAnalytics():
                         book_started = True
 
         return windows, re.compile(r"\s+").sub(" ", title).strip()
+
+    def _extract_compound(self, windows):
+        """
+        Private method extract compound.
+
+        For extracting compound values for ranking.
+        Arguments:
+        windows - a list of paragraph text windows extracted from book
+        """
+        compound = []
+        for window in windows:
+            compound.append(window['sentiment']['compound'])
+
+        return compound
+
+    def _extract_mov_avg(self, compound):
+        """
+        Private method extract_mov_avg.
+
+        For extracting moving average values for ranking.
+        Arguments:
+        compound - a list of compound values per windows extracted from book
+        """
+        # Fix this for a bit better way to avoid miss indexing
+        mov_avg = [0, 0]
+
+        for i in range(len(compound)):
+            if i > 4:
+                mov_avg.append(sum(compound[i-5:i]) / 5)
+
+        return mov_avg
+
+    def _extract_inter_sum(self, compound):
+        """
+        Private method extract_inter_sum.
+
+        For extracting interval sum values for ranking.
+        Arguments:
+        compound - a list of compound values per windows extracted from book
+        """
+        # Fix this for a bit better way to avoid miss indexing
+        inter = []
+        inter_sum = []
+
+        for i in range(len(compound)):
+            if i < len(compound) - 1:
+                inter.append(abs(compound[i] - compound[i +1]))
+            if i > 4:
+                inter_sum.append(sum(inter[i-5:i]) / 5)
+
+        return inter_sum
+
+    def rank_windows(self, windows, alg="inter_sum"):
+        """
+        Rank windows method.
+
+        Builds a ranked list of the windows
+        """
+        # All methods will need this
+        compound = self._extract_compound(windows)
+
+        # Populate ranking
+        rank = []
+        if alg=="inter_sum":
+            inter_sum = self._extract_inter_sum(compound)
+            rank = inter_sum
+        if alg=="mov_avg":
+            mov_avg = self._extract_mov_avg(compound)
+            rank = mov_avg
+        if alg=="compound":
+            rank = compound
+
+        # Build the objects with ranks
+        # Note: we need to be careful with not mixing up with the different
+        # lengths of windows and ranks and remember how each has been done
+        rank_windows = []
+        print("--------------------------")
+        print(rank, windows)
+        for i in range(len(rank)):
+            rank_windows.append({
+                "para_id": i,
+                "text": windows[i]['text'],
+                "rank": rank[i]
+            })
+
+        # Do the ranking
+        rank_windows.sort(key=lambda x: x['rank'])
+        return rank_windows

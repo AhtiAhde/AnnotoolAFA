@@ -90,7 +90,7 @@ class BookImporter():
             return -1
         
         book_analytics = BookAnalytics(import_file, self.book_path)
-        paragraphs, title = book_analytics.parse()
+        paragraphs, title = book_analytics.parse_windows()
         
         sql = "INSERT INTO annotool.books (title, origin) VALUES (:title, :origin) RETURNING id"
         book_res_id = self.db.session.execute(sql, {"title":title, "origin":import_file}).fetchone()[0]
