@@ -57,3 +57,5 @@ Tylsällä kohdalla (184) on korkea intervalli summa, eli ambivalenssia on ilmei
 Ja mielenkiintoisella kohdalla (394) on matala intervalli summa, eli sentimentti on selkeästi keskittynyt:
 
 ![MICE with More data](MICE_ex_1_second.png?raw=true "MICE with More Data")
+
+Tein myös Golden Rank metriikan, jossa draaman kannalta oleellinen kohta (394) sijoittuu jo top 20%:iin.

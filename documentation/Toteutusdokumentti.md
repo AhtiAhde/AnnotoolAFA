@@ -1,0 +1,5 @@
+# Toteutusdokumentti
+
+Tässä työssä rakennetaan annotoitavien teksti näytteiden priorisointiin algoritmia. Perus ajatuksena olisi implementoida jonkinlainen versio tutkimukseen perustuvasta algoritmista, joka kuitenkin parhaiten toimisi tähän kyseiseen ongelmaan. Kyseessä on "Learning to Rank"-ongelma, joten ennalta annotoitujen tekstinäytteiden Golden Rank sijoittuminen on todennäköisesti hyvä mittari algoritmien toiminnalle. Suorituskyky vaatimuksia algoritmeille ei oikeastaan ole, koska kyseessä on tausta prosessi joka valmiissa järjestelmässä ajettaisiin vain kerran per kirja.
+
+Tällä hetkellä koodissa on hyvin suppeasti mielenkiintoista kamaa `modules/book_analytics` moduulissa, muut osat ovat olemassa lähinnä järjestelmän muita jo olemassa olevia osia varten ja käyttöliittymää, jossa tätä voisi periaatteessa testata. Myös `notebooks` kansiossa on mielenkiintoisempia data tieteellisempiä analyyseja, jotka toisaalta nekään eivät ole vielä kovin syvällisiä. Ensi tulokset olivatkin yllättäen toimivan näköisiä, mutta niihin ei sovi liiaksi luottaa vielä tässä vaiheessa.
